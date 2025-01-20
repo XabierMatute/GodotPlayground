@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://ck3ei7ikpxre6"]
+
+[ext_resource type="Texture2D" uid="uid://b3hr0rhpwvdrv" path="res://art/enemyFlyingAlt_1.png" id="1_qiyen"]
+[ext_resource type="Script" path="res://mob.gd" id="1_suhvn"]
+[ext_resource type="Texture2D" uid="uid://c6dx1w47and8a" path="res://art/enemyFlyingAlt_2.png" id="2_lqffq"]
+[ext_resource type="Texture2D" uid="uid://dmbxbixedprva" path="res://art/enemySwimming_1.png" id="3_4tl55"]
+[ext_resource type="Texture2D" uid="uid://7aekg5m8qxrq" path="res://art/enemySwimming_2.png" id="4_fwbvf"]
+[ext_resource type="Texture2D" uid="uid://bpaheqbh5whng" path="res://art/enemyWalking_1.png" id="5_ejaxv"]
+[ext_resource type="Texture2D" uid="uid://x7xfp8612hgu" path="res://art/enemyWalking_2.png" id="6_hgjjy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlg8y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qiyen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lqffq")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4tl55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fwbvf")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ejaxv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hgjjy")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkwrd"]
+radius = 36.0
+height = 98.0
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+position = Vector2(309, 342)
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_suhvn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_hlg8y")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vkwrd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
