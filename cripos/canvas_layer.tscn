@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://djfjvb8k3d436"]
+[gd_scene load_steps=6 format=3 uid="uid://djfjvb8k3d436"]
 
 [ext_resource type="Script" path="res://canvas_layer.gd" id="1_ulx4k"]
 [ext_resource type="FontFile" uid="uid://d0mmvdmy5jnwr" path="res://fonts/Xolonium-Regular.ttf" id="2_4g83u"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_48alm"]
+action = &"start_game"
+
+[sub_resource type="InputEventKey" id="InputEventKey_f7nk2"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_3ba04"]
+events = [SubResource("InputEventAction_48alm"), SubResource("InputEventKey_f7nk2")]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_ulx4k")
@@ -50,6 +60,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_4g83u")
 theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_3ba04")
 text = "Dale!"
 
 [node name="MessageTimer" type="Timer" parent="."]
