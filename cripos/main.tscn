@@ -1,11 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3sowjl5xcdsj"]
+[gd_scene load_steps=11 format=3 uid="uid://c3sowjl5xcdsj"]
 
 [ext_resource type="PackedScene" uid="uid://cvp1438ix33kc" path="res://player.tscn" id="1_gkekr"]
 [ext_resource type="Script" path="res://main.gd" id="1_syi21"]
 [ext_resource type="PackedScene" uid="uid://ck3ei7ikpxre6" path="res://mob.tscn" id="2_dkrku"]
 [ext_resource type="PackedScene" uid="uid://djfjvb8k3d436" path="res://canvas_layer.tscn" id="4_sl73u"]
+[ext_resource type="Script" path="res://biblia.gd" id="4_thhqv"]
+[ext_resource type="Texture2D" uid="uid://sgnkj08uy8p1" path="res://descargas/biblia.jpg" id="4_yyw2g"]
 [ext_resource type="AudioStream" uid="uid://bl1yxl3iokxbl" path="res://art/House In a Forest Loop.ogg" id="5_eb1kv"]
 [ext_resource type="AudioStream" uid="uid://cp746dn7jdxdd" path="res://art/gameover.wav" id="6_mj1l4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyh7u"]
+size = Vector2(22, 24)
 
 [sub_resource type="Curve2D" id="Curve2D_j7ai4"]
 _data = {
@@ -26,10 +31,27 @@ grow_vertical = 2
 color = Color(0.355394, 0.638808, 0.464355, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_gkekr")]
-position = Vector2(104, 104)
+position = Vector2(251, 340)
+collision_layer = 5
+collision_mask = 5
+
+[node name="Biblia" type="RigidBody2D" parent="Player"]
+collision_layer = 6
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("4_thhqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Biblia"]
+position = Vector2(-0.124996, -0.499997)
+scale = Vector2(0.0324627, 0.023)
+texture = ExtResource("4_yyw2g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Biblia"]
+position = Vector2(-0.125, -0.5)
+shape = SubResource("RectangleShape2D_qyh7u")
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 7.834
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -54,6 +76,24 @@ stream = ExtResource("5_eb1kv")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_mj1l4")
+
+[node name="Moba" parent="." instance=ExtResource("2_dkrku")]
+position = Vector2(138, 340)
+
+[node name="Biblia" type="RigidBody2D" parent="."]
+collision_layer = 6
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("4_thhqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Biblia"]
+position = Vector2(-0.124996, -0.499997)
+scale = Vector2(0.0324627, 0.023)
+texture = ExtResource("4_yyw2g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Biblia"]
+position = Vector2(-0.125, -0.5)
+shape = SubResource("RectangleShape2D_qyh7u")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
