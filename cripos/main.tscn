@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3sowjl5xcdsj"]
+[gd_scene load_steps=9 format=3 uid="uid://c3sowjl5xcdsj"]
 
 [ext_resource type="PackedScene" uid="uid://cvp1438ix33kc" path="res://player.tscn" id="1_gkekr"]
 [ext_resource type="Script" path="res://main.gd" id="1_syi21"]
 [ext_resource type="PackedScene" uid="uid://ck3ei7ikpxre6" path="res://mob.tscn" id="2_dkrku"]
+[ext_resource type="PackedScene" uid="uid://1mxgixg0jtpb" path="res://biblia.tscn" id="4_3refa"]
 [ext_resource type="PackedScene" uid="uid://djfjvb8k3d436" path="res://canvas_layer.tscn" id="4_sl73u"]
 [ext_resource type="AudioStream" uid="uid://bl1yxl3iokxbl" path="res://art/House In a Forest Loop.ogg" id="5_eb1kv"]
 [ext_resource type="AudioStream" uid="uid://cp746dn7jdxdd" path="res://art/gameover.wav" id="6_mj1l4"]
@@ -27,6 +28,14 @@ color = Color(0.355394, 0.638808, 0.464355, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_gkekr")]
 position = Vector2(104, 104)
+
+[node name="Biblia" parent="Player" instance=ExtResource("4_3refa")]
+i_scale = Vector2(0.025, 0.025)
+angle = 3.14
+
+[node name="Biblia2" parent="Player" instance=ExtResource("4_3refa")]
+scale = Vector2(0.000739448, 0.000363791)
+i_scale = Vector2(0.025, 0.025)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
